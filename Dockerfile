@@ -1,6 +1,7 @@
 FROM php:8.2-apache
 
 RUN docker-php-ext-install mysqli pdo pdo_mysql
+RUN printf '%s\n' 'display_errors=Off' 'log_errors=On' > /usr/local/etc/php/conf.d/production.ini
 
 COPY . /var/www/html/
 COPY docker-entrypoint.sh /usr/local/bin/practicore-entrypoint

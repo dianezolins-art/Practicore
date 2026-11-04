@@ -3,11 +3,11 @@
   "rewrites": [
     {
       "source": "/(.*\\.php)",
-      "destination": "https://practicore-production.up.railway.app/$1"
+      "destination": "https://practicore-vjj8.onrender.com/$1"
     },
     {
       "source": "/uploads/(.*)",
-      "destination": "https://practicore-production.up.railway.app/uploads/$1"
+      "destination": "https://practicore-vjj8.onrender.com/uploads/$1"
     }
   ]
 }

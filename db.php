@@ -196,7 +196,13 @@ function send_account_verification_email($email, $token) {
     return @mail($email, $subject, $message, $headers);
 }
 
-$conn = @new mysqli($host, $user, $pass);
+$conn = false;
+try {
+    $conn = @new mysqli($host, $user, $pass);
+} catch (mysqli_sql_exception $error) {
+    error_log('Database connection failed: ' . $error->getMessage());
+}
+
 if ($conn && !$conn->connect_error) {
     // Ensure database exists
     $conn->query("CREATE DATABASE IF NOT EXISTS `$dbname`");

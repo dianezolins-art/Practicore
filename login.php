@@ -7,6 +7,9 @@ $showResetSuggestion = false;
 $failedEmail = "";
 
 $db = get_db_connection();
+if (!$db) {
+    $errorMessage = "Login is temporarily unavailable because the database connection could not be established.";
+}
 
 // Handle Password Reset Submission
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['action'] === 'reset_password') {
@@ -24,6 +27,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['a
         $errorMessage = "Password must be at least 8 characters long.";
         $showResetSuggestion = true;
         $failedEmail = $rEmail;
+    } elseif (!$db) {
+        $errorMessage = "Password reset is unavailable because the database connection could not be established.";
     } elseif ($db) {
         $safeEmail = normalize_email($rEmail);
         $accountTable = null;
@@ -100,7 +105,9 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    if ($authenticated) {
+    if (!$db) {
+        $errorMessage = "Login is temporarily unavailable because the database connection could not be established.";
+    } elseif ($authenticated) {
         // All account roles start in the campus newsfeed.
         header("Location: feed.php");
         exit();
