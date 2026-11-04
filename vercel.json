@@ -2,12 +2,12 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
     {
-      "source": "/(.*\\.php)",
-      "destination": "https://practicore-vjj8.onrender.com/$1"
+      "source": "/:path*.php",
+      "destination": "https://practicore-vjj8.onrender.com/:path*.php"
     },
     {
-      "source": "/uploads/(.*)",
-      "destination": "https://practicore-vjj8.onrender.com/uploads/$1"
+      "source": "/uploads/:path*",
+      "destination": "https://practicore-vjj8.onrender.com/uploads/:path*"
     }
   ]
 }
