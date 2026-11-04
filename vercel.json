@@ -1,13 +1,17 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "rewrites": [
-    {
-      "source": "/(.*\\.php)",
-      "destination": "https://practicore-vjj8.onrender.com/$1"
-    },
-    {
-      "source": "/uploads/(.*)",
-      "destination": "https://practicore-vjj8.onrender.com/uploads/$1"
-    }
-  ]
+  "rewrites": {
+    "beforeFiles": [
+      {
+        "source": "/(.*\\.php)",
+        "destination": "https://practicore-vjj8.onrender.com/$1"
+      },
+      {
+        "source": "/uploads/(.*)",
+        "destination": "https://practicore-vjj8.onrender.com/uploads/$1"
+      }
+    ],
+    "afterFiles": [],
+    "fallback": []
+  }
 }
