@@ -1,13 +1,16 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "rewrites": [
+  "routes": [
     {
-      "source": "/:path*.php",
-      "destination": "https://practicore-vjj8.onrender.com/:path*.php"
+      "src": "^/(.*\\.php)$",
+      "dest": "https://practicore-vjj8.onrender.com/$1"
     },
     {
-      "source": "/uploads/:path*",
-      "destination": "https://practicore-vjj8.onrender.com/uploads/:path*"
+      "src": "^/uploads/(.*)$",
+      "dest": "https://practicore-vjj8.onrender.com/uploads/$1"
+    },
+    {
+      "handle": "filesystem"
     }
   ]
 }
