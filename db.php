@@ -5,6 +5,7 @@ $user = getenv('DB_USER') ?: 'root';
 $pass = getenv('DB_PASS') ?: '';
 $dbname = getenv('DB_NAME') ?: 'practicore_db';
 $port = (int) (getenv('DB_PORT') ?: 3306);
+$sslCa = getenv('DB_SSL_CA') ?: '';
 
 // Accounts remain in practicore_db, but are stored in a role-specific table.
 function account_table_for_role($role) {
@@ -199,9 +200,34 @@ function send_account_verification_email($email, $token) {
 
 $conn = false;
 try {
-    $conn = @new mysqli($host, $user, $pass, $dbname, $port);
+    $mysqli = mysqli_init();
+    if (!$mysqli) {
+        throw new RuntimeException('Failed to initialize MySQL client');
+    }
+
+    $flags = 0;
+    if ($sslCa !== '') {
+        if (!is_file($sslCa) || !is_readable($sslCa)) {
+            throw new RuntimeException('Configured DB_SSL_CA file is not readable');
+        }
+        if (!$mysqli->options(MYSQLI_OPT_SSL_VERIFY_SERVER_CERT, true)) {
+            throw new RuntimeException('Failed to enable database certificate verification');
+        }
+        if (!$mysqli->ssl_set(null, null, $sslCa, null, null)) {
+            throw new RuntimeException('Failed to configure database TLS certificate');
+        }
+        $flags = MYSQLI_CLIENT_SSL;
+    }
+
+    if ($mysqli->real_connect($host, $user, $pass, $dbname, $port, null, $flags)) {
+        $conn = $mysqli;
+    } else {
+        error_log('Database connection failed: ' . $mysqli->connect_error);
+    }
 } catch (mysqli_sql_exception $error) {
     error_log('Database connection failed: ' . $error->getMessage());
+} catch (RuntimeException $error) {
+    error_log('Database connection configuration failed: ' . $error->getMessage());
 }
 
 if ($conn && !$conn->connect_error) {
