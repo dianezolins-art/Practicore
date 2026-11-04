@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 110" width="460" height="110">
+  <defs>
+    <linearGradient id="brand-gradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4f46e5"/>
+      <stop offset="52%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+    <filter id="brand-glow" x="-20%" y="-30%" width="140%" height="160%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-color="#6366f1" flood-opacity=".28"/>
+      <feComposite in2="blur" operator="in"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <!-- Graduation Cap Icon -->
+  <g transform="translate(10, 10)" filter="url(#brand-glow)">
+    <!-- Cap Diamond Top -->
+    <polygon points="45,5 90,26 45,47 0,26" fill="none" stroke="url(#brand-gradient)" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round"/>
+    <!-- Cap Lower Skull Section -->
+    <path d="M22,37 L22,60 C22,74 68,74 68,60 L68,37" fill="none" stroke="url(#brand-gradient)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Button on Top -->
+    <circle cx="45" cy="26" r="3" fill="#6366f1"/>
+    <!-- Tassel Cord & Hanging Fringe -->
+    <path d="M45,26 C60,28 72,40 73,50 L70,72 L76,72 L73,50" fill="none" stroke="url(#brand-gradient)" stroke-width="2.5"/>
+    <rect x="69" y="70" width="8" height="12" rx="2" fill="#06b6d4"/>
+  </g>
+
+  <!-- Brand Typography: PRAC + TI + CORE -->
+  <text x="115" y="74" font-family="'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="54" letter-spacing="-1px" filter="url(#brand-glow)">
+    <tspan fill="url(#brand-gradient)">PRACTICORE</tspan>
+  </text>
+</svg>

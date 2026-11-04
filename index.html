@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practicore — Centralized Internship Placement & Training Recommendation Platform</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap 5 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Custom Glassmorphism CSS -->
+    <link rel="stylesheet" href="style.css?v=20261029-responsive1">
+    <style>
+        /* Prevent wide media and controls from overflowing phone or tablet screens. */
+        img,
+        svg,
+        video,
+        iframe {
+            max-width: 100%;
+        }
+
+        @media (max-width: 991.98px) {
+
+            .glass-card.p-4,
+            .glass-card.p-5 {
+                padding: 1.25rem !important;
+            }
+        }
+
+        @media (max-width: 575.98px) {
+            .hero-section {
+                overflow: hidden;
+            }
+
+            .process-heading,
+            .section-header {
+                gap: .75rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Ambient Glowing Background Elements -->
+    <div class="bg-ambient">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Glass Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-glass sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img class="brand-logo" src="logo.svg?v=20261029" alt="Practicore" style="height: 38px; width: 159px;">
+            </a>
+
+            <button class="navbar-toggler btn-glass p-2 border-0" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navContent" aria-controls="navContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="bi bi-list text-white fs-3"></i>
+            </button>
+
+            <div class="collapse navbar-collapse mobile-nav-panel" id="navContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#how-it-works"><i class="bi bi-diagram-3 me-1"></i> How It
+                            Connects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#reviews"><i class="bi bi-star-fill text-warning me-1"></i> Ratings &
+                            Reviews</a>
+                    </li>
+                </ul>
+
+                <div class="d-flex align-items-center gap-2">
+                    <a href="login.php" class="btn btn-glass btn-glass-sm">
+                        <i class="bi bi-box-arrow-in-right"></i> Log In
+                    </a>
+                    <a href="register.php" class="btn btn-gradient btn-gradient-sm">
+                        <i class="bi bi-person-plus-fill"></i> Register
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section text-center">
+        <div class="container">
+            <div class="hero-badge">
+                <i class="bi bi-stars"></i> Internship & Career Development Platform
+            </div>
+            <h1 class="hero-title">
+                Where Talent Meets Opportunity<br>
+                <span class="text-gradient">and Experience Builds Careers.</span>
+            </h1>
+            <p class="hero-subtitle">
+                Empowering students, institutions, and employers with a centralized solution for internship management, collaboration, and career development.
+            </p>
+
+            <!-- Public Search / Inquiry Bar -->
+            <div class="search-hub">
+                <form id="publicSearchForm" onsubmit="event.preventDefault(); handlePublicSearch();">
+                    <div class="row g-2 align-items-center">
+                        <div class="col-lg-5 col-md-6">
+                            <div class="glass-input-group">
+                                <i class="bi bi-mortarboard"></i>
+                                <input type="text" id="publicSchoolInput" class="glass-input"
+                                    placeholder="Enter Your School or Campus (e.g. Cainta Campus)">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="glass-input-group">
+                                <i class="bi bi-book"></i>
+                                <input type="text" id="publicCourseInput" class="glass-input"
+                                    placeholder="Course or Field (e.g. BSIT)">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-12">
+                            <button type="submit" class="btn btn-gradient w-100 py-2">
+                                <i class="bi bi-search me-1"></i> Check Openings
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Quick Tags --> 
+                <div class="d-flex justify-content-center flex-wrap gap-2 mt-3 small text-muted">
+                    <span>Popular Campuses & Courses:</span>
+                    <a href="javascript:void(0)"
+                        class="text-white text-decoration-none bg-white bg-opacity-10 px-2 py-1 rounded"
+                        onclick="setQuickSearch('Cainta Campus', 'BSIT')">Cainta Campus (BSIT)</a>
+                    <a href="javascript:void(0)"
+                        class="text-white text-decoration-none bg-white bg-opacity-10 px-2 py-1 rounded"
+                        onclick="setQuickSearch('Pasig Campus', 'BSCS')">Pasig Campus (BSCS)</a>
+                    <a href="javascript:void(0)"
+                        class="text-white text-decoration-none bg-white bg-opacity-10 px-2 py-1 rounded"
+                        onclick="setQuickSearch('Rizal Campus', 'CpE')">Rizal Campus (CpE)</a>
+                </div>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="row g-3 justify-content-center mt-4">
+                <div class="col-6 col-md-3">
+                    <div class="glass-card p-3">
+                        <div class="fs-3 fw-bold text-white">450+</div>
+                        <div class="small text-muted">Endorsed OJT Slots</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="glass-card p-3">
+                        <div class="fs-3 fw-bold text-white">120+</div>
+                        <div class="small text-muted">Vetted Host Companies</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="glass-card p-3">
+                        <div class="fs-3 fw-bold text-white">100%</div>
+                        <div class="small text-muted">MoA & Legal Compliance</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="glass-card p-3">
+                        <div class="fs-3 fw-bold text-white">4.9 ★</div>
+                        <div class="small text-muted">Platform Satisfaction</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- How It Connects Section (The 3-Way Bridge) -->
+    <section id="how-it-works" class="container my-5 py-4">
+        <div class="section-header">
+            <span class="section-pill"><i class="bi bi-arrows-fullscreen me-1"></i> Role-Based Ecosystem</span>
+            <h2 class="section-title">How Practicore Unifies the Placement Process</h2>
+            <p class="section-desc">
+                Everything is compartmentalized into dedicated, secure dashboards tailored to each role's
+                responsibilities.
+            </p>
+        </div>
+
+        <div class="row g-4">
+            <!-- Admin Bridge Card -->
+            <div class="col-lg-4 col-md-6">
+                <div class="glass-card bridge-card">
+                    <div>
+                        <div class="bridge-icon-box bridge-icon-admin">
+                            <i class="bi bi-shield-lock-fill"></i>
+                        </div>
+                        <h4 class="fw-bold text-white mb-2">1. School Coordinators & Admins</h4>
+                        <p class="text-muted small mb-3">
+                            Streamline internship coordination through a centralized workspace built for educational institutions.
+                        </p>
+                        <div class="p-3 rounded bg-dark bg-opacity-50 text-start small mb-3">
+                            <div class="text-white fw-semibold mb-1"><i
+                                    class="bi bi-check-circle-fill text-primary me-1"></i> Coordinator Responsibilities:
+                            </div>
+                            <div class="text-muted">• Student Onboarding Support</div>
+                            <div class="text-muted">• Partner Organization Management</div>
+                            <div class="text-muted">• Internship Progress Oversight</div>
+                        </div>
+                    </div>
+                    <a href="login.php" class="btn btn-glass btn-sm w-100">
+                        <i class="bi bi-box-arrow-in-right me-1"></i> Access Admin Portal
+                    </a>
+                </div>
+            </div>
+
+            <!-- Company Bridge Card -->
+            <div class="col-lg-4 col-md-6">
+                <div class="glass-card bridge-card">
+                    <div>
+                        <div class="bridge-icon-box bridge-icon-company">
+                            <i class="bi bi-buildings-fill"></i>
+                        </div>
+                        <h4 class="fw-bold text-white mb-2">2. Partner Host Companies</h4>
+                        <p class="text-muted small mb-3">
+                            Partner with academic institutions to provide valuable industry experience and help shape tomorrow's professionals.
+                        </p>
+                        <div class="p-3 rounded bg-dark bg-opacity-50 text-start small mb-3">
+                            <div class="text-white fw-semibold mb-1"><i class="bi bi-check-circle-fill text-primary me-1"></i>
+                                Employer Responsibilities:</div>
+                            <div class="text-muted">• Internship Program Coordination</div>
+                            <div class="text-muted">• Applicant Review & Selection</div>
+                            <div class="text-muted">• Performance Review & Mentorship</div>
+                        </div>
+                    </div>
+                    <a href="login.php" class="btn btn-glass btn-sm w-100">
+                        <i class="bi bi-box-arrow-in-right me-1"></i> Access Company Portal
+                    </a>
+                </div>
+            </div>
+
+            <!-- Student Bridge Card -->
+            <div class="col-lg-4 col-md-12">
+                <div class="glass-card bridge-card">
+                    <div>
+                        <div class="bridge-icon-box bridge-icon-student">
+                            <i class="bi bi-mortarboard-fill"></i>
+                        </div>
+                        <h4 class="fw-bold text-white mb-2">3. Student Trainees</h4>
+                        <p class="text-muted small mb-3">
+                            Take the next step toward your professional journey through guided internship opportunities and industry-based learning experiences.
+                        </p>
+                        <div class="p-3 rounded bg-dark bg-opacity-50 text-start small mb-3">
+                            <div class="text-white fw-semibold mb-1"><i
+                                    class="bi bi-check-circle-fill text-primary me-1"></i> Student Capabilities:</div>
+                            <div class="text-muted">• Opportunity Discovery & Applications</div>
+                            <div class="text-muted">• Requirement Submission & Tracking</div>
+                            <div class="text-muted">• Internship Progress Monitoring</div> 
+                        </div>
+                    </div>
+                    <a href="login.php" class="btn btn-gradient btn-sm w-100">
+                        <i class="bi bi-box-arrow-in-right me-1"></i> Access Student Portal
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works-journeys" class="container my-5 py-4 process-section-hidden" hidden aria-hidden="true">
+        <div class="process-heading">
+            <div>
+                <span class="section-pill"><i class="bi bi-diagram-3 me-1"></i> OJT Placement Journey</span>
+                <h2 class="section-title mb-0">How It Works</h2>
+            </div>
+            <div class="process-tabs nav nav-pills" role="tablist">
+                <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#studentJourney" type="button"
+                    role="tab">For Students</button>
+                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#companyJourney" type="button"
+                    role="tab">For Companies</button>
+                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#coordinatorJourney" type="button"
+                    role="tab">For Coordinators</button>
+            </div>
+        </div>
+
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="studentJourney" role="tabpanel">
+                <div class="row g-4 process-grid">
+                    <div class="col-lg-4">
+                        <article class="process-card glass-card">
+                            <div class="process-media student-media"><i class="bi bi-person-vcard"></i></div>
+                            <div class="process-card-body"><span>Step 1</span>
+                                <h3>Create your OJT profile</h3>
+                                <p>Register with your campus, course, skills, and requirements so the system can show
+                                    opportunities intended for you.</p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-lg-4">
+                        <article class="process-card glass-card">
+                            <div class="process-media opportunity-media"><i class="bi bi-search-heart"></i></div>
+                            <div class="process-card-body"><span>Step 2</span>
+                                <h3>Browse endorsed openings</h3>
+                                <p>Explore verified OJT roles from partner companies, filtered by your school and
+                                    academic program.</p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-lg-4">
+                        <article class="process-card glass-card">
+                            <div class="process-media training-media"><i class="bi bi-clipboard2-check"></i></div>
+                            <div class="process-card-body"><span>Step 3</span>
+                                <h3>Complete your placement</h3>
+                                <p>Submit requirements, track approval status, log DTR hours, and receive evaluations in
+                                    one dashboard.</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="companyJourney" role="tabpanel">
+                <div class="row g-4 process-grid process-grid-four">
+                    <div class="col-lg-3 col-md-6">
+                        <article class="process-card glass-card">
+                            <div class="process-media moa-media"><i class="bi bi-pen"></i></div>
+                            <div class="process-card-body"><span>Step 1</span>
+                                <h3>Sign the MoA</h3>
+                                <p>Establish a formal partnership with the university through a Memorandum of Agreement.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <article class="process-card glass-card">
+                            <div class="process-media company-media"><i class="bi bi-building-check"></i></div>
+                            <div class="process-card-body"><span>Step 2</span>
+                                <h3>Register your company</h3>
+                                <p>Create your company profile and get verified before posting OJT opportunities.</p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <article class="process-card glass-card">
+                            <div class="process-media opportunity-media"><i class="bi bi-megaphone"></i></div>
+                            <div class="process-card-body"><span>Step 3</span>
+                                <h3>Post opportunities</h3>
+                                <p>Share OJT positions and reach qualified students from your approved partner campus.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <article class="process-card glass-card">
+                            <div class="process-media training-media"><i class="bi bi-people-fill"></i></div>
+                            <div class="process-card-body"><span>Step 4</span>
+                                <h3>Hire &amp; train students</h3>
+                                <p>Review applications, welcome trainees, monitor progress, and submit their evaluation.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="coordinatorJourney" role="tabpanel">
+                <div class="row g-4 process-grid process-grid-four">
+                    <div class="col-lg-3 col-md-6">
+                        <article class="process-card glass-card">
+                            <div class="process-media coordinator-media"><i class="bi bi-building-gear"></i></div>
+                            <div class="process-card-body"><span>Step 1</span>
+                                <h3>Set up your OJT program</h3>
+                                <p>Register your campus, program requirements, and coordinator account in one secure
+                                    workspace.</p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <article class="process-card glass-card">
+                            <div class="process-media moa-media"><i class="bi bi-patch-check"></i></div>
+                            <div class="process-card-body"><span>Step 2</span>
+                                <h3>Accredit companies</h3>
+                                <p>Review company profiles, approve partnerships, and keep MoA documents organized by
+                                    campus.</p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <article class="process-card glass-card">
+                            <div class="process-media student-media"><i class="bi bi-file-earmark-check"></i></div>
+                            <div class="process-card-body"><span>Step 3</span>
+                                <h3>Endorse students</h3>
+                                <p>Validate requirements and guide eligible students toward verified OJT openings.</p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <article class="process-card glass-card">
+                            <div class="process-media training-media"><i class="bi bi-bar-chart-line"></i></div>
+                            <div class="process-card-body"><span>Step 4</span>
+                                <h3>Monitor &amp; evaluate</h3>
+                                <p>Track student hours, placement status, and company feedback through your dashboard.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ratings & Reviews Showcase (As Requested: Main Page Highlight) -->
+    <section id="reviews" class="container my-5 py-4">
+        <div class="section-header">
+            <span class="section-pill"><i class="bi bi-star-fill text-warning me-1"></i> Community Feedback</span>
+            <h2 class="section-title">Verified Ratings & Student Testimonials</h2>
+            <p class="section-desc">
+                Real feedback from student trainees, academic advisers, and company supervisors using the Practicore
+                platform.
+            </p>
+        </div>
+
+        <!-- Rating Summary Glass Banner -->
+        <div class="glass-panel p-4 mb-5">
+            <div class="row align-items-center g-4 text-center text-md-start">
+                <div class="col-md-3 text-center border-end-md border-secondary border-opacity-25">
+                    <div class="rating-big-number text-gradient">4.9</div>
+                    <div class="star-rating mb-1">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                    </div>
+                    <div class="small text-muted">Out of 5.0 (980+ Reviews)</div>
+                </div>
+                <div class="col-md-6">
+                    <h5 class="fw-bold text-white mb-2">Trusted Across Universities & Partner Companies</h5>
+                    <p class="text-muted small mb-0">
+                        Our centralized coordination ensures transparent MoA agreements, accurate student hour logging,
+                        and verified job matches without third-party confusion.
+                    </p>
+                </div>
+                <div class="col-md-3 text-center text-md-end">
+                    <button class="btn btn-gradient btn-sm" onclick="openReviewModal()">
+                        <i class="bi bi-pencil-square me-1"></i> Rate This Platform
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reviews Grid -->
+        <div class="row g-4" id="reviewsContainer">
+
+            <!-- Review 1: Student -->
+            <div class="col-lg-4 col-md-6">
+                <div class="glass-card review-card">
+                    <div>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <div class="star-rating mb-0">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                            </div>
+                            <span class="badge bg-success bg-opacity-25 text-success verified-badge">
+                                <i class="bi bi-patch-check-fill"></i> Verified Intern
+                            </span>
+                        </div>
+                        <p class="review-comment">
+                            "Finding an OJT company used to be super stressful with physical endorsement papers. With
+                            Practicore, I immediately saw openings specifically allocated for our Cainta BSIT batch. My
+                            MoA got approved in just 2 days!"
+                        </p>
+                    </div>
+                    <div class="reviewer-meta">
+                        <div class="reviewer-avatar">SR</div>
+                        <div>
+                            <div class="reviewer-name">Sophia Nicole Ramirez</div>
+                            <div class="reviewer-sub">BSIT Intern • Cainta Campus</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review 2: Coordinator / Admin -->
+            <div class="col-lg-4 col-md-6">
+                <div class="glass-card review-card">
+                    <div>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <div class="star-rating mb-0">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                            </div>
+                            <span class="badge bg-primary bg-opacity-25 text-primary verified-badge">
+                                <i class="bi bi-shield-check"></i> Academic Coordinator
+                            </span>
+                        </div>
+                        <p class="review-comment">
+                            "Overseeing hundreds of graduating trainees across multiple partner firms was chaotic before
+                            this. Practicore gives our department complete visibility over active student placements,
+                            DTRs, and MoA compliance." 
+                        </p>
+                    </div>
+                    <div class="reviewer-meta">
+                        <div class="reviewer-avatar" style="background: linear-gradient(135deg, #ec4899, #8b5cf6);">AR
+                        </div>
+                        <div>
+                            <div class="reviewer-name">Prof. Alexander Vance Ramos</div>
+                            <div class="reviewer-sub">OJT Department Chair • College of Computer Studies</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review 3: Partner Company --> 
+            <div class="col-lg-4 col-md-6">
+                <div class="glass-card review-card">
+                    <div>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <div class="star-rating mb-0">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                            </div>
+                            <span class="badge bg-info bg-opacity-25 text-info verified-badge">
+                                <i class="bi bi-building-check"></i> Partner Employer
+                            </span>
+                        </div>
+                        <p class="review-comment">
+                            "We were looking for junior web trainees proficient in PHP and MySQL. Practicore enabled us
+                            to post openings directly targeting the school's BSIT roster. The applicants were pre-vetted
+                            and highly motivated."
+                        </p>
+                    </div>
+                    <div class="reviewer-meta">
+                        <div class="reviewer-avatar" style="background: linear-gradient(135deg, #06b6d4, #10b981);">CS
+                        </div>
+                        <div>
+                            <div class="reviewer-name">CloudScale Solutions Inc.</div>
+                            <div class="reviewer-sub">HR Tech Recruiter • Cainta, Rizal</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review 4: Student -->
+            <div class="col-lg-4 col-md-6">
+                <div class="glass-card review-card">
+                    <div>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <div class="star-rating mb-0">
+                                <i class="bi bi-star-fill"></i> 
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-half"></i>
+                            </div>
+                            <span class="badge bg-success bg-opacity-25 text-success verified-badge">
+                                <i class="bi bi-patch-check-fill"></i> Verified Intern
+                            </span>
+                        </div>
+                        <p class="review-comment">
+                            "The training modules for Git and Workplace Ethics gave me an edge during my technical
+                            interview. I'm now halfway through rendering my 486 hours with a monthly allowance!"
+                        </p>
+                    </div>
+                    <div class="reviewer-meta">
+                        <div class="reviewer-avatar">MR</div>
+                        <div>
+                            <div class="reviewer-name">Mark Anthony Reyes</div>
+                            <div class="reviewer-sub">BSIT Trainee • Pasig Campus</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review 5: Student -->
+            <div class="col-lg-4 col-md-6">
+                <div class="glass-card review-card">
+                    <div>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <div class="star-rating mb-0">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                            </div>
+                            <span class="badge bg-success bg-opacity-25 text-success verified-badge">
+                                <i class="bi bi-patch-check-fill"></i> Verified Intern
+                            </span>
+                        </div>
+                        <p class="review-comment">
+                            "Everything is inside your own dashboard after logging in: you see the exact jobs from your
+                            school, you can track daily hours, and upload requirements without line queues in the campus
+                            registrar."
+                        </p>
+                    </div>
+                    <div class="reviewer-meta">
+                        <div class="reviewer-avatar" style="background: linear-gradient(135deg, #f59e0b, #ec4899);">CB
+                        </div>
+                        <div>
+                            <div class="reviewer-name">Christian Dave Bautista</div>
+                            <div class="reviewer-sub">Computer Engineering Intern • Cainta</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review 6: Company -->
+            <div class="col-lg-4 col-md-6">
+                <div class="glass-card review-card">
+                    <div>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <div class="star-rating mb-0">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                            </div>
+                            <span class="badge bg-info bg-opacity-25 text-info verified-badge">
+                                <i class="bi bi-building-check"></i> Partner Employer
+                            </span>
+                        </div>
+                        <p class="review-comment">
+                            "Very intuitive glass design and solid architecture. We've hired 4 student trainees who
+                            transitioned into full-time junior positions upon graduation. Excellent platform!"
+                        </p> 
+                    </div>
+                    <div class="reviewer-meta">
+                        <div class="reviewer-avatar" style="background: linear-gradient(135deg, #6366f1, #06b6d4);">AG
+                        </div>
+                        <div>
+                            <div class="reviewer-name">Apex Global Technologies</div>
+                            <div class="reviewer-sub">Talent Acquisition Partner • Ortigas</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Glass Footer -->
+    <footer class="footer-glass">
+        <div class="container">
+            <div class="row g-4 mb-5">
+                <div class="col-lg-4 col-md-6">
+                    <div class="navbar-brand mb-3">
+                        <img class="brand-logo" src="logo.svg?v=20261029" alt="Practicore" style="height: 40px; width: 167px;">
+                    </div>
+                    <p class="text-muted small mb-4" style="max-width: 320px;">
+                        Centralized Internship Placement & Training Recommendation Platform connecting aspiring student
+                        trainees with verified partner employers.
+                    </p>
+                    <div>
+                        <a href="javascript:void(0)" class="social-pill" title="Facebook"><i
+                                class="bi bi-facebook"></i></a>
+                        <a href="javascript:void(0)" class="social-pill" title="LinkedIn"><i
+                                class="bi bi-linkedin"></i></a>
+                        <a href="javascript:void(0)" class="social-pill" title="GitHub"><i class="bi bi-github"></i></a>
+                        <a href="javascript:void(0)" class="social-pill" title="Email"><i
+                                class="bi bi-envelope-fill"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-6">
+                    <h6 class="text-white fw-bold mb-3">Dedicated Portals</h6>
+                    <a href="login.php" class="footer-link">Student Trainee Login</a>
+                    <a href="login.php" class="footer-link">Partner Company Login</a>
+                    <a href="login.php" class="footer-link">School Coordinator Login</a>
+                    <a href="register.php" class="footer-link">Create Account</a>
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-6">
+                    <h6 class="text-white fw-bold mb-3">Community</h6>
+                    <a href="#reviews" class="footer-link">Verified Reviews</a>
+                    <a href="#how-it-works" class="footer-link">How It Works</a>
+                    <a href="register.php" class="footer-link">Partner Campuses</a>
+                    <a href="javascript:void(0)" class="footer-link" onclick="openReviewModal()">Write a Review</a>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="text-white fw-bold mb-3">Support & Compliance</h6>
+                    <p class="text-muted small mb-2">Need help linking your school or company with Practicore?</p>
+                    <div class="small text-white mb-2"><i
+                            class="bi bi-envelope text-primary me-2"></i>support@practicore.edu.ph</div>
+                    <div class="small text-muted"><i class="bi bi-clock me-2"></i>Mon - Fri, 8:00 AM - 5:00 PM</div>
+                </div>
+            </div>
+
+            <div
+                class="border-top border-secondary border-opacity-25 pt-4 d-flex justify-content-center align-items-center text-center small text-muted">
+                <div>&copy; 2026 Practicore Platform. All rights reserved.</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========================================================
+         MODALS
+         ======================================================== -->
+
+    <!-- Search Inquiry Prompt Modal -->
+    <div class="modal fade modal-glass" id="searchPromptModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center p-3">
+                <div class="modal-header border-0 pb-0 justify-content-end">
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body py-4">
+                    <div class="brand-icon mx-auto mb-3" style="width: 54px; height: 54px; font-size: 1.6rem;">
+                        <i class="bi bi-buildings"></i>
+                    </div>
+                    <h4 class="fw-bold text-white mb-2" id="promptModalTitle">Verified Openings Found!</h4>
+                    <p class="text-muted small mb-4" id="promptModalDesc">
+                        We have verified partner company listings specifically designated for your school.
+                        Please log in to your student dashboard to view full company details, apply, and submit your
+                        requirements.
+                    </p>
+                    <div class="d-grid gap-2">
+                        <a href="login.php" class="btn btn-gradient py-2">
+                            <i class="bi bi-box-arrow-in-right me-1"></i> Log In to View Postings
+                        </a>
+                        <a href="register.php" class="btn btn-glass py-2">
+                            <i class="bi bi-person-plus me-1"></i> Register with My School
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Write a Review Modal (Working Dynamic Review Submissions) -->
+    <div class="modal fade modal-glass" id="reviewModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        <h5 class="modal-title fw-bold text-white">Share Your Practicore Experience</h5>
+                        <p class="text-muted small mb-0">Help other students and coordinators with your honest rating.
+                        </p>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" s
+                        aria-label="Close"></button>
+                </div>
+                <form id="reviewForm" onsubmit="event.preventDefault(); submitReview();">
+                    <div class="modal-body p-4">
+                        <div class="mb-3">
+                            <label class="form-label small text-muted">Your Full Name</label>
+                            <input type="text" id="reviewName" class="glass-input" placeholder="e.g. Maria Santos"
+                                required>
+                        </div>
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label small text-muted">Your Role</label>
+                                <select id="reviewRole" class="glass-input">
+                                    <option value="OJT Intern">Student Trainee</option>
+                                    <option value="OJT Coordinator">Academic Coordinator</option>
+                                    <option value="Partner Employer">Host Company Representative</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small text-muted">Campus / Company</label>
+                                <input type="text" id="reviewAffiliation" class="glass-input"
+                                    placeholder="e.g. Cainta Campus" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small text-muted">Rating (Stars)</label>
+                            <select id="reviewStars" class="glass-input">
+                                <option value="5">★★★★★ (5 Stars - Outstanding)</option>
+                                <option value="4">★★★★☆ (4 Stars - Great)</option>
+                                <option value="3">★★★☆☆ (3 Stars - Average)</option>
+                                <option value="2">★★☆☆☆ (2 Stars - Below Average)</option>
+                                <option value="1">★☆☆☆☆ (1 Star - Poor)</option>
+                            </select>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label small text-muted">Your Review / Testimonial</label>
+                            <textarea id="reviewComment" class="glass-input" rows="3"
+                                placeholder="Tell us how Practicore helped with your placement, MoA, or trainee search..."
+                                required></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-glass btn-sm" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-gradient btn-sm">
+                            <i class="bi bi-star-fill me-1"></i> Post Verified Review
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container-custom" id="toastContainer"></div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom Application JS -->
+    <script src="script.js"></script>
+</body>
+
+</html>
