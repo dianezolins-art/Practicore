@@ -1,13 +1,13 @@
 FROM php:8.2-apache
 
-# I-install ang MySQL extensions
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
-# Kopyahin ang lahat ng files papunta sa Apache web directory
 COPY . /var/www/html/
+COPY docker-entrypoint.sh /usr/local/bin/practicore-entrypoint
 
-# I-set ang tamang permissions
-RUN chown -R www-data:www-data /var/www/html
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod +x /usr/local/bin/practicore-entrypoint
 
-# Piliting patakbuhin ang Apache server sa foreground
-CMD ["apache2-foreground"]
+EXPOSE 8080
+
+CMD ["practicore-entrypoint"]

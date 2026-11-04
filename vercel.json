@@ -1,15 +1,13 @@
 {
-  "version": 2,
-  "builds": [
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
     {
-      "src": "*.php",
-      "use": "@vercel/php"
-    }
-  ],
-  "routes": [
+      "source": "/(.*\\.php)",
+      "destination": "https://practicore-production.up.railway.app/$1"
+    },
     {
-      "src": "/(.*)",
-      "destination": "/$1"
+      "source": "/uploads/(.*)",
+      "destination": "https://practicore-production.up.railway.app/uploads/$1"
     }
   ]
 }
