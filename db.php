@@ -4,6 +4,7 @@ $host = getenv('DB_HOST') ?: 'localhost';
 $user = getenv('DB_USER') ?: 'root';
 $pass = getenv('DB_PASS') ?: '';
 $dbname = getenv('DB_NAME') ?: 'practicore_db';
+$port = (int) (getenv('DB_PORT') ?: 3306);
 
 // Accounts remain in practicore_db, but are stored in a role-specific table.
 function account_table_for_role($role) {
@@ -198,16 +199,12 @@ function send_account_verification_email($email, $token) {
 
 $conn = false;
 try {
-    $conn = @new mysqli($host, $user, $pass);
+    $conn = @new mysqli($host, $user, $pass, $dbname, $port);
 } catch (mysqli_sql_exception $error) {
     error_log('Database connection failed: ' . $error->getMessage());
 }
 
 if ($conn && !$conn->connect_error) {
-    // Ensure database exists
-    $conn->query("CREATE DATABASE IF NOT EXISTS `$dbname`");
-    $conn->select_db($dbname);
-
     // 1. Users table
     $conn->query("CREATE TABLE IF NOT EXISTS `users` (
         `id` INT AUTO_INCREMENT PRIMARY KEY,
