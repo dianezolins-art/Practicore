@@ -1,9 +1,9 @@
 <?php
 // db.php - Database connection & auto-table initializations
-$host = "localhost";
-$user = "root";
-$pass = "";
-$dbname = "practicore_db";
+$host = getenv('DB_HOST') ?: 'localhost';
+$user = getenv('DB_USER') ?: 'root';
+$pass = getenv('DB_PASS') ?: '';
+$dbname = getenv('DB_NAME') ?: 'practicore_db';
 
 // Accounts remain in practicore_db, but are stored in a role-specific table.
 function account_table_for_role($role) {
